@@ -15,19 +15,24 @@ with open('artists.json') as data_file:
     chosenArtist = data['properties'][randomArtist]
     
 # Searching every song of the artist
-# songs = searchArtistSongs(chosenArtist)
-artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity')
+# artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity')
+artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity', max_songs=2, get_full_info=False) # test
 songs = artist.songs
 
 if (chosenArtist['artistName'] == 'Zander'):
     songs = songs[0:19] + songs[20:23]
 
-randomSong = random.randint(0, len(songs))
-print(songs[randomSong].lyrics)
-
-
+# Picking one song and getting its lyrics
+randomSong = random.randint(0, len(songs)-1)
+songName = songs[randomSong].title
+songLyrics = songs[randomSong].lyrics
 
 # Selecting 4 random lines from the song
+print("----------------")
+print(songLyrics)
+print("\n")
+print(chosenArtist['artistName'] + ' - ' + songName)
+print("----------------")
 
 # Assembling song + authorship into one string
 
