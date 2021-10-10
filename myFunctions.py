@@ -17,8 +17,8 @@ def selectRandomArtist():
         return data['properties'][randomArtist]
 
 def iterateArtistSongs(genius, chosenArtist):
-    artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity', max_songs=1, get_full_info=False) # For tests
-    # artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity')
+    # artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity', max_songs=1, get_full_info=False) # For tests
+    artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity')
     artist.songs = handleSpecialArtistCases(artist.songs, chosenArtist)
     return artist.songs
 
