@@ -7,7 +7,7 @@ from datetime import datetime
 # Main functions
 
 def startApi(lg):
-    return lg.Genius(secret.client_access_token, skip_non_songs=True, excluded_terms=["(Remix)", "(Live)"], remove_section_headers=True)
+    return lg.Genius(secret.client_access_token, skip_non_songs=True, excluded_terms=["(Remix)", "(Live)", "Ao Vivo"], remove_section_headers=True)
 
 def selectRandomArtist():
     with open('/home/gabriel/Projects/TwitterBot/hardcoretriste/artists.json') as data_file:
