@@ -17,7 +17,7 @@ def selectRandomArtist():
         return data['properties'][randomArtist]
 
 def iterateArtistSongs(genius, chosenArtist):
-    # artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity', max_songs=1, get_full_info=False) # For tests
+    # artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity', max_songs=5, get_full_info=False) # For tests
     artist = genius.search_artist(artist_name='', artist_id=chosenArtist['artistId'], sort='popularity')
     artist.songs = handleSpecialArtistCases(artist.songs, chosenArtist)
     return artist.songs
@@ -29,6 +29,7 @@ def handleSpecialArtistCases(artistSongs, chosenArtist):
         return artistSongs
     
 def chooseSong(songs):
+    # return 1 # TESTS - Return a specific song
     return randomize(len(songs), 1)
 
 def getSongName(songs, chosenSong):
@@ -50,11 +51,16 @@ def assembleFourVerses(lyrics):
     song = []
     for line in lines:
         line = removeUnnecessaryInfo(line)
-        song.append(line)
+        if not line:
+            continue
+        else:
+            song.append(line)
+            
 
     maxStartingPoint = len(song)
     startingPoint = randomize(maxStartingPoint, 4)
 
+    # separatedVerses = song[5:9] # TESTS - Selecting a specific part of the lyrics
     separatedVerses = song[startingPoint:startingPoint+4]
     joinedVerses = '\n'.join(separatedVerses)
 
